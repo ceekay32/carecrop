@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import "./Navbar.css";
+import "../styles/Navbar.css";
 import { RxHamburgerMenu } from "react-icons/rx";
+import logo from "../images/CropLogo.png";
 
 function Navbar() {
   const [click, setClick] = useState(false);
   const handleClick = () => {
     setClick(!click);
   };
+
   return (
     <div>
       <nav className="navbar">
         <div className="nav-container">
           <NavLink exact to="/" activeClassName="active" className="nav-logo">
-            Carecrop
+            {/* <img src={logo} alt="I-Krishi" /> */}
+            I-Krishi
           </NavLink>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>

@@ -64,7 +64,6 @@ data['Soil Type'] = soil_encoder.fit_transform(data['Soil Type'])
 crop_encoder = LabelEncoder()
 data['Crop Type'] = crop_encoder.fit_transform(data['Crop Type'])
 
-
 # Setting up the home route
 @app.get("/")
 def read_root():
@@ -98,7 +97,16 @@ async def get_predict_crop(data: CropRecommendation):
 
 @app.post("/predict_fert/")
 async def get_predict_fert(data: FertRecommendation):
-    
+    # sample2 = [[
+    #     data.temp,
+    #     data.humidity,
+    #     data.moisture,
+    #     data.soil,
+    #     data.crop,
+    #     data.nitrogen,
+    #     data.potassium,
+    #     data.phosphorus
+    # ]]
      # Transform the categorical variables 'soil' and 'crop' in the input data
     data_dict = data.dict()
     data_dict['soil'] = soil_encoder.transform([data_dict['soil']])[0]

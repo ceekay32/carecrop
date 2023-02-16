@@ -4,8 +4,9 @@ import About from "./pages/About";
 import MarketInfo from "./pages/MarketInfo";
 import WeatherInfo from "./pages/WeatherInfo";
 import CropInfo from "./pages/CropInfo";
+import CropForm from "./components/CropForm";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
+import "./styles/App.css";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/market" element={<MarketInfo />} />
             <Route path="/weather" element={<WeatherInfo />} />
-            <Route path="/crop  " element={<CropInfo />} />
+            <Route path="/crop" element={<CropForm />} />
           </Routes>
         </div>
       </Router>
