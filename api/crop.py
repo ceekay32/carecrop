@@ -3,7 +3,6 @@ import pandas as pd
 import uvicorn
 import pickle
 from pydantic import BaseModel
-from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sklearn.preprocessing import LabelEncoder
 
@@ -29,8 +28,8 @@ app.add_middleware(
 )
 
 # Loading up the trained model
-crop_model = pickle.load(open('./models/CR(RandomForest).pkl', 'rb'))
-fert_model = pickle.load(open('./models/FS(RandomForest).pkl', 'rb'))
+crop_model = pickle.load(open('../models/CR(RandomForest).pkl', 'rb'))
+fert_model = pickle.load(open('../models/FS(RandomForest).pkl', 'rb'))
 
 
 
@@ -55,7 +54,7 @@ class FertRecommendation(BaseModel):
     phosphorus: int
 
 # Load data from fertilizer_data.csv
-data = pd.read_csv('./dataset/fertilizer_data.csv')
+data = pd.read_csv('../dataset/fertilizer_data.csv')
 
 # Encode the categorical variables 'soil' and 'crop'
 soil_encoder = LabelEncoder()
@@ -97,16 +96,16 @@ async def get_predict_crop(data: CropRecommendation):
 
 @app.post("/predict_fert/")
 async def get_predict_fert(data: FertRecommendation):
-    # sample2 = [[
-    #     data.temp,
-    #     data.humidity,
-    #     data.moisture,
-    #     data.soil,
-    #     data.crop,
-    #     data.nitrogen,
-    #     data.potassium,
-    #     data.phosphorus
-    # ]]
+    sample2 = [[
+        data.temp,
+        data.humidity,
+        data.moisture,
+        data.soil,
+        data.crop,
+        data.nitrogen,
+        data.potassium,
+        data.phosphorus
+    ]]
      # Transform the categorical variables 'soil' and 'crop' in the input data
     data_dict = data.dict()
     data_dict['soil'] = soil_encoder.transform([data_dict['soil']])[0]
