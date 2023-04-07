@@ -5,6 +5,12 @@ import pickle
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from sklearn.preprocessing import LabelEncoder
+from fastapi import FastAPI, File, UploadFile
+from PIL import Image
+from keras.preprocessing import image
+from keras.models import load_model
+import numpy as np
+import os
 
 
 # Initializing the FastAPI server
@@ -122,6 +128,23 @@ async def get_predict_fert(data: FertRecommendation):
             "fert_type": fert,
         }
     }
+
+classifier = load_model('../models/Trained_model.h5')
+
+@app.post("/predict_pesticide/")
+async def predict(image_file: UploadFile = File(...)):
+    try:
+        img = Image.open(image_file.file).resize((64, 64))
+        img_array = np.array(img)
+        img_array = np.expand_dims(img_array, axis=0)
+        result = classifier.predict(img_array)
+        classes = ['aphids', 'armyworm', 'beetle', 'bollworm', 'earthworm',
+                   'grasshopper', 'mites', 'mosquito', 'sawfly', 'stem borer']
+        pred_class = np.argmax(result, axis=1)[0]
+        pest_identified = classes[pred_class]
+        return pest_identified
+    except Exception as e:
+        return {"Error": str(e)}
 
 # Configuring the server host and port
 if __name__ == '__main__':
