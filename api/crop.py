@@ -239,7 +239,7 @@ async def disease_prediction(file: UploadFile = File(...)):
 
         prediction = disease_dic[prediction]
 
-        return prediction.Cause
+        return prediction
 
     except:
         pass
