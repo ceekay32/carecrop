@@ -7,6 +7,7 @@ import CropInfo from "./pages/CropInfo";
 import CropForm from "./components/CropForm";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/App.css";
+import DiseasePredictionForm from "./components/DiseasePredForm";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/market" element={<MarketInfo />} />
             <Route path="/weather" element={<WeatherInfo />} />
             <Route path="/crop" element={<CropForm />} />
+            <Route path="/disease" element={<DiseasePredictionForm />} />
           </Routes>
         </div>
       </Router>

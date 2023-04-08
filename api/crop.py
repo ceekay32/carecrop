@@ -10,7 +10,11 @@ from PIL import Image
 from keras.preprocessing import image
 from keras.models import load_model
 import numpy as np
-import os
+import io
+import torch
+from torchvision import transforms
+from model_details import ResNet9
+from disease_details import disease_dic
 
 
 # Initializing the FastAPI server
@@ -34,8 +38,8 @@ app.add_middleware(
 )
 
 # Loading up the trained model
-crop_model = pickle.load(open('../models/CR(RandomForest).pkl', 'rb'))
-fert_model = pickle.load(open('../models/FS(RandomForest).pkl', 'rb'))
+crop_model = pickle.load(open('./models/CR(RandomForest).pkl', 'rb'))
+fert_model = pickle.load(open('./models/FS(RandomForest).pkl', 'rb'))
 
 
 
@@ -60,7 +64,7 @@ class FertRecommendation(BaseModel):
     phosphorus: int
 
 # Load data from fertilizer_data.csv
-data = pd.read_csv('../dataset/fertilizer_data.csv')
+data = pd.read_csv('./dataset/fertilizer_data.csv')
 
 # Encode the categorical variables 'soil' and 'crop'
 soil_encoder = LabelEncoder()
@@ -129,7 +133,7 @@ async def get_predict_fert(data: FertRecommendation):
         }
     }
 
-classifier = load_model('../models/Trained_model.h5')
+classifier = load_model('./models/Trained_model.h5')
 
 @app.post("/predict_pesticide/")
 async def predict(image_file: UploadFile = File(...)):

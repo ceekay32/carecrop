@@ -1,14 +1,20 @@
-from fastapi import FastAPI, File, UploadFile
+# Importing essential libraries and modules
+
+from flask import Flask, render_template, request, Markup
+import numpy as np
+import pandas as pd
+from disease_details import disease_dic
 import io
-from PIL import Image
 import torch
-import torchvision.transforms as transforms
-from utils.model import ResNet9
+from torchvision import transforms
+from PIL import Image
+from model_details import ResNet9
 
+# -------------------------LOADING THE TRAINED MODELS -----------------------------------------------
 
-app = FastAPI()
+# Loading plant disease classification model
 
-disease_classes = disease_classes = ['Apple___Apple_scab',
+disease_classes = ['Apple___Apple_scab',
                    'Apple___Black_rot',
                    'Apple___Cedar_apple_rust',
                    'Apple___healthy',
@@ -47,9 +53,10 @@ disease_classes = disease_classes = ['Apple___Apple_scab',
                    'Tomato___Tomato_mosaic_virus',
                    'Tomato___healthy']
 
-disease_model_path = './models/plant-disease-model-complete.pth'
+disease_model_path = './models/plant-disease-model.pth'
 disease_model = ResNet9(3, len(disease_classes))
-disease_model.load_state_dict(torch.load(disease_model_path, map_location=torch.device('cpu')))
+disease_model.load_state_dict(torch.load(
+    disease_model_path, map_location=torch.device('cpu')))
 disease_model.eval()
 
 def predict_image(img, model=disease_model):
@@ -73,16 +80,38 @@ def predict_image(img, model=disease_model):
     prediction = disease_classes[preds[0].item()]
     # Retrieve the class label
     return prediction
+# ------------------------------------ FLASK APP -------------------------------------------------
 
-@app.post("/disease-prediction/")
-async def predict_disease(file: UploadFile = File(...)):
-    """
-    Predicts the disease label of an uploaded image
-    """
-    try:
-        contents = await file.read()
-        prediction = predict_image(contents)
 
-        return {"prediction": prediction}
-    except:
-        return {"prediction": "Error: Invalid file format or image cannot be processed."}
+app = Flask(__name__)
+# render disease prediction result page
+@app.route('/disease-predict', methods=['GET', 'POST'])
+def disease_prediction():
+    title = 'Carecrop - Disease Detection'
+
+    if request.method == 'POST':
+        # if 'file' not in request.files:
+        #     # return redirect(request.url)
+        #     return title
+        file = request.files.get('file')
+        # if not file:
+        #     return render_template('disease.html', title=title)
+            #return render_template('crop.html', title=title)
+
+            #return title
+        try:
+            img = file.read()
+
+            prediction = predict_image(img)
+
+            prediction = Markup(str(disease_dic[prediction]))
+            #return render_template('disease-result.html', prediction=prediction, title=title)
+            return prediction
+        except:
+            pass
+    #return render_template('disease.html', title=title)
+
+
+# ===============================================================================================
+if __name__ == '__main__':
+    app.run(debug=False)
