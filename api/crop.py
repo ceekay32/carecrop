@@ -135,6 +135,9 @@ async def get_predict_fert(data: FertRecommendation):
 
 classifier = load_model('./models/Trained_model.h5')
 
+# -------------------------PESTICIDE PREDICTION -----------------------------------------------
+
+
 @app.post("/predict_pesticide/")
 async def predict(image_file: UploadFile = File(...)):
     try:
