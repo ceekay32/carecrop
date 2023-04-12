@@ -350,7 +350,24 @@ body {
 .whiteBg {
   background-color: #fff;
 }
+.brownBg {
+  background-color: #aa8b56;
+}
 .colorNew {
   background-color: #70a062;
   /* background-color: #49cb86; */
+}
+.btn {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 8px;
+}
+.btn-primary {
+  background-color: #f44336;
 }

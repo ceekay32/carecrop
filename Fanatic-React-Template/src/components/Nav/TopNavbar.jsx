@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-scroll";
+import { NavLink } from "react-router-dom";
+
 // Components
 import Sidebar from "../Nav/Sidebar";
 import Backdrop from "../Elements/Backdrop";
@@ -9,6 +11,10 @@ import LogoIcon from "../../assets/svg/Logo";
 import BurgerIcon from "../../assets/svg/BurgerIcon";
 
 export default function TopNavbar() {
+  const [click, setClick] = useState(false);
+  const handleClick = () => {
+    setClick(!click);
+  };
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
 
@@ -28,12 +34,18 @@ export default function TopNavbar() {
         style={y > 100 ? { height: "60px" } : { height: "80px" }}
       >
         <NavInner className="container flexSpaceCenter">
-          <Link className="pointer flexNullCenter" to="home" smooth={true}>
+          <NavLink
+            exact
+            to="/"
+            className="pointer flexNullCenter"
+            smooth={true}
+          >
             <LogoIcon />
             <h1 style={{ marginLeft: "15px" }} className="font20 extraBold">
               I-Krishi
             </h1>
-          </Link>
+          </NavLink>
+
           <BurderWrapper
             className="pointer"
             onClick={() => toggleSidebar(!sidebarOpen)}
@@ -42,66 +54,69 @@ export default function TopNavbar() {
           </BurderWrapper>
           <UlWrapper className="flexNullCenter">
             <li className="semiBold font15 pointer ">
-              <Link
+              <NavLink
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="home"
+                to="/"
                 spy={true}
-                smooth={true}
                 offset={-80}
               >
                 Home
-              </Link>
+              </NavLink>
             </li>
             <li className="semiBold font15 pointer">
-              <Link
+              <NavLink
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="services"
+                exact
+                to="crop"
                 spy={true}
                 smooth={true}
                 offset={-80}
               >
-                Services
-              </Link>
+                Crop
+              </NavLink>
             </li>
             <li className="semiBold font15 pointer">
-              <Link
+              <NavLink
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="projects"
+                exact
+                to="/fertilizer"
                 spy={true}
                 smooth={true}
                 offset={-80}
               >
-                About Us
-              </Link>
+                Fertilizer
+              </NavLink>
             </li>
             <li className="semiBold font15 pointer">
-              <Link
+              <NavLink
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="blog"
+                exact
+                to="pesticide"
                 spy={true}
                 smooth={true}
                 offset={-80}
               >
-                Blog
-              </Link>
+                Pesticide
+              </NavLink>
             </li>
             <li className="semiBold font15 pointer">
-              <Link
+              <NavLink
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
-                to="pricing"
+                exact
+                to="disease"
                 spy={true}
                 smooth={true}
                 offset={-80}
               >
-                Pricing
-              </Link>
+                Disease
+              </NavLink>
             </li>
-            <li className="semiBold font15 pointer">
+            {/* <li className="semiBold font15 pointer">
               <Link
                 activeClass="active"
                 style={{ padding: "10px 15px" }}
@@ -112,7 +127,7 @@ export default function TopNavbar() {
               >
                 Contact
               </Link>
-            </li>
+            </li> */}
           </UlWrapper>
           {/* <UlWrapperRight className="flexNullCenter">
             <li className="semiBold font15 pointer">

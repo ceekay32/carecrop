@@ -5,31 +5,46 @@ import RollerIcon from "../../assets/svg/Services/RollerIcon";
 import MonitorIcon from "../../assets/svg/Services/MonitorIcon";
 import BrowserIcon from "../../assets/svg/Services/BrowserIcon";
 import PrinterIcon from "../../assets/svg/Services/PrinterIcon";
+import Mosquito from "../../assets/svg/Services/Mosquito1.jpg";
+import Apple from "../../assets/svg/Services/Apple.jpg";
+import Fertilizer from "../../assets/svg/Services/fertilizer-color-icon.jpg";
+import Crop from "../../assets/svg/Services/Crop.jpg";
 
-export default function ServiceBox({icon, title, subtitle}) {
+export default function ServiceBox({ icon, title, subtitle }) {
   let getIcon;
 
   switch (icon) {
-    case "roller":
-      getIcon = <RollerIcon />;
+    // case "roller":
+    //   getIcon = <RollerIcon />;
+    //   break;
+    // case "monitor":
+    //   getIcon = <MonitorIcon />;
+    //   break;
+    // case "browser":
+    //   getIcon = <BrowserIcon />;
+    //   break;
+    // case "printer":
+    //   getIcon = <PrinterIcon />;
+    //   break;
+    case "mosquito":
+      getIcon = <img src={Mosquito}></img>;
       break;
-    case "monitor":
-      getIcon = <MonitorIcon />;
+    case "apple":
+      getIcon = <img src={Apple}></img>;
       break;
-    case "browser":
-      getIcon = <BrowserIcon />;
+    case "fertilizer":
+      getIcon = <img src={Fertilizer}></img>;
       break;
-    case "printer":
-      getIcon = <PrinterIcon />;
+    case "crop":
+      getIcon = <img src={Crop}></img>;
       break;
     default:
       getIcon = <RollerIcon />;
       break;
   }
 
-
   return (
-    <Wrapper className="flex flexColumn">
+    <Wrapper className="flex flexColumn animate pointer">
       <IconStyle>{getIcon}</IconStyle>
       <TitleStyle className="font20 extraBold">{title}</TitleStyle>
       <SubtitleStyle className="font13">{subtitle}</SubtitleStyle>
