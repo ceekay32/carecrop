@@ -31,7 +31,7 @@ function FertForm() {
         const data = res.data.data;
         const parameters = JSON.stringify(params);
         const msg = `Prediction: ${data.prediction}\nInterpretation: ${data.interpretation}\nParameters: ${parameters}`;
-        const mesg = `Our model suggests that you grow ${data.crop_type}`;
+        const mesg = `Our model suggests that you grow ${data.fert_type}`;
         alert(mesg);
         reset();
       })
@@ -42,10 +42,11 @@ function FertForm() {
     setNitrogen("");
     setPhosphorus("");
     setPotassium("");
-    setPh("");
     setTemp("");
-    setRainfall("");
+    setMoisture("");
     setHumidity("");
+    setCrop("");
+    setSoil("");
   };
 
   return (
@@ -102,16 +103,16 @@ function FertForm() {
             <input
               id="etest_p"
               className="glass__form__input"
-              placeholder="Enter ph value"
+              placeholder="Enter moisture value"
               required
               min="0"
               max="14"
               type="number"
-              title="ph value"
+              title="moisture value"
               pattern="[0-9]+([\.,][0-9]+)?"
               step="0.1"
-              value={ph}
-              onChange={(e) => setPh(e.target.value)}
+              value={moisture}
+              onChange={(e) => setMoisture(e.target.value)}
             />
           </div>
 
@@ -134,14 +135,34 @@ function FertForm() {
             <input
               id="msc"
               className="glass__form__input"
-              placeholder="Enter rainfall in cm"
+              placeholder="Enter crop"
               required
               min="0"
               type="number"
-              title="rainfall in cm"
+              title="crop type"
               pattern="[0-9]+([\.,][0-9]+)?"
-              value={rainfall}
-              onChange={(e) => setRainfall(e.target.value)}
+              value={crop}
+              onChange={(e) => setCrop(e.target.value)}
+            />
+            <select name="cars" id="msc" className="glass__form__input">
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select>
+          </div>
+          <div className="glass__form__group">
+            <input
+              id="msc"
+              className="glass__form__input"
+              placeholder="Enter soil type"
+              required
+              min="0"
+              type="number"
+              title="soil type"
+              pattern="[0-9]+([\.,][0-9]+)?"
+              value={soil}
+              onChange={(e) => setSoil(e.target.value)}
             />
           </div>
           <div className="glass__form__group">

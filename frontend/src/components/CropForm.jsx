@@ -10,6 +10,7 @@ function CropForm() {
   const [temp, setTemp] = useState("");
   const [rainfall, setRainfall] = useState("");
   const [humidity, setHumidity] = useState("");
+  const [message, setMessage] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,12 +29,11 @@ function CropForm() {
       .then((res) => {
         const data = res.data.data;
         const parameters = JSON.stringify(params);
-        const msg = `Prediction: ${data.prediction}\nInterpretation: ${data.interpretation}\nParameters: ${parameters}`;
         const mesg = `Our model suggests that you grow ${data.crop_type}`;
-        alert(mesg);
+        setMessage(mesg);
         reset();
       })
-      .catch((error) => alert(`Error: ${error.message}`));
+      .catch((error) => setMessage(`Error: ${error.message}`));
   };
 
   const reset = () => {
@@ -160,6 +160,7 @@ function CropForm() {
             <button type="submit" className="glass__form__btn">
               Submit
             </button>
+            {message && <p>{message}</p>}
           </div>
         </form>
       </div>
