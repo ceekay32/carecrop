@@ -7,10 +7,10 @@ import ServiceBox from "../Elements/ServiceBox";
 import FullButton from "../Buttons/FullButton";
 import { NavLink } from "react-router-dom";
 // Assets
-import AddImage1 from "../../assets/img/add/1.png";
-import AddImage2 from "../../assets/img/add/farmer1.jpg";
-import AddImage3 from "../../assets/img/add/3.png";
-import AddImage4 from "../../assets/img/add/4.png";
+import AddImage1 from "../../assets/img/add/farmer1.jpg";
+import AddImage2 from "../../assets/img/add/farmer2.jpg";
+import AddImage3 from "../../assets/img/add/farmer3.jpg";
+import AddImage4 from "../../assets/img/add/farmer4.jpg";
 
 export default function Services() {
   const [click, setClick] = useState(false);
@@ -28,12 +28,12 @@ export default function Services() {
         <div className="container ">
           <HeaderInfo>
             <h1 className="font40 extraBold">Our Awesome Services</h1>
-            <p className="font13">
+            {/* <p className="font13">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut
               <br />
               labore et dolore magna aliquyam erat, sed diam voluptua.
-            </p>
+            </p> */}
           </HeaderInfo>
           <ServiceBoxRow className="flex">
             <ServiceBoxWrapper className="animate shadow">
@@ -46,7 +46,7 @@ export default function Services() {
                 <ServiceBox
                   icon="crop"
                   title="Crop Suggestion"
-                  subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+                  subtitle="Here, we provide personalized crop recommendations based on your specific location, soil type, and climate conditions"
                 />
               </NavLink>
             </ServiceBoxWrapper>
@@ -61,7 +61,7 @@ export default function Services() {
                 <ServiceBox
                   icon="fertilizer"
                   title="Fertilizer Suggestion"
-                  subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore."
+                  subtitle="We provide expert advice on the optimal fertilizers to use for your specific crop and soil type to help you maximize your yields and improve soil health."
                 />
               </NavLink>
             </ServiceBoxWrapper>
@@ -75,7 +75,7 @@ export default function Services() {
                 <ServiceBox
                   icon="apple"
                   title="Disease Prediction"
-                  subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat."
+                  subtitle="Here we use cutting-edge technology to predict and prevent crop diseases."
                 />
               </NavLink>
             </ServiceBoxWrapper>
@@ -88,8 +88,8 @@ export default function Services() {
               >
                 <ServiceBox
                   icon="mosquito"
-                  title="Pesticide Detection "
-                  subtitle="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor."
+                  title="Pest Detection "
+                  subtitle="Here we use advanced technology to help farmers and gardeners identify and manage pest infestations."
                 />
               </NavLink>
             </ServiceBoxWrapper>

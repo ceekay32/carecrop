@@ -4,6 +4,7 @@ import { Link } from "react-scroll";
 // Assets
 import CloseIcon from "../../assets/svg/CloseIcon";
 import LogoIcon from "../../assets/svg/Logo";
+import { NavLink } from "react-router-dom";
 
 export default function Sidebar({ sidebarOpen, toggleSidebar }) {
   return (
@@ -25,65 +26,65 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
 
       <UlStyle className="flexNullCenter flexColumn">
         <li className="semiBold font15 pointer">
-          <Link
+          <NavLink
             onClick={() => toggleSidebar(!sidebarOpen)}
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="home"
+            to="/"
             spy={true}
             smooth={true}
             offset={-60}
           >
             Home
-          </Link>
+          </NavLink>
         </li>
         <li className="semiBold font15 pointer">
-          <Link
+          <NavLink
             onClick={() => toggleSidebar(!sidebarOpen)}
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="services"
+            to="/crop"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            Services
-          </Link>
+            Crop
+          </NavLink>
         </li>
         <li className="semiBold font15 pointer">
-          <Link
+          <NavLink
             onClick={() => toggleSidebar(!sidebarOpen)}
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="projects"
+            to="/fertilizer"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            About Us
-          </Link>
+            Fertilizer
+          </NavLink>
         </li>
         <li className="semiBold font15 pointer">
-          <Link
+          <NavLink
             onClick={() => toggleSidebar(!sidebarOpen)}
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="blog"
+            to="/pesticide"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            Blog
-          </Link>
+            Pesticide
+          </NavLink>
         </li>
         <li className="semiBold font15 pointer">
-          <Link
+          <NavLink
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+            activeClass="/disease"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="pricing"
@@ -91,10 +92,10 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             smooth={true}
             offset={-60}
           >
-            Pricing
-          </Link>
+            Disease
+          </NavLink>
         </li>
-        <li className="semiBold font15 pointer">
+        {/* <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
             activeClass="active"
@@ -107,7 +108,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
           >
             Contact
           </Link>
-        </li>
+        </li> */}
       </UlStyle>
       {/* <UlStyle className="flexSpaceCenter">
         <li className="semiBold font15 pointer">
