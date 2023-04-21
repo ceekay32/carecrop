@@ -60,6 +60,22 @@
   color: #ea2828;
   transition: all ease-in-out 0.3s;
 }
+.glass__form__btn_secondary {
+  background: #28ea99;
+  border: 1px solid #28ea99;
+  border: none;
+  outline: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.glass__form__btn__secondary:hover {
+  background: transparent;
+  color: #28ea99;
+  transition: all ease-in-out 0.3s;
+}
 
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
@@ -108,4 +124,19 @@
   -ms-flex-align: center;
   align-items: center;
   min-height: 100vh;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
 }

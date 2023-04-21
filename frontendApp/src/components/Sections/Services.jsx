@@ -39,7 +39,7 @@ export default function Services() {
             <ServiceBoxWrapper className="animate shadow">
               <NavLink
                 exact
-                to="/disease"
+                to="/crop"
                 className="nav-links"
                 onClick={handleClick}
               >
@@ -53,7 +53,7 @@ export default function Services() {
             <ServiceBoxWrapper>
               <NavLink
                 exact
-                to="/disease"
+                to="/fertilizer"
                 className="nav-links"
                 onClick={handleClick}
               >
@@ -82,7 +82,7 @@ export default function Services() {
             <ServiceBoxWrapper>
               <NavLink
                 exact
-                to="/disease"
+                to="/pesticide"
                 className="nav-links"
                 onClick={handleClick}
               >
