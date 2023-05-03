@@ -78,7 +78,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             smooth={true}
             offset={-60}
           >
-            Pesticide
+            Pest
           </NavLink>
         </li>
         <li className="semiBold font15 pointer">
@@ -87,7 +87,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="/disease"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="pricing"
+            to="disease"
             spy={true}
             smooth={true}
             offset={-60}

@@ -19,16 +19,16 @@ disease_dic = {
 
 
     'Apple___healthy': {
-'Crop': 'Apple',
-'Disease': 'No disease',
-'Cause': None,
-'Prevention': None
+    'Crop': 'Apple',
+    "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
 },
 'Blueberry___healthy': {
     'Crop': 'Blueberry',
-    'Disease': 'No disease',
-    'Cause': None,
-    'Prevention': None
+    "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
 },
 
 'Cherry_(including_sour)___Powdery_mildew': {
@@ -40,9 +40,9 @@ disease_dic = {
 
 'Cherry_(including_sour)___healthy': {
     'Crop': 'Cherry',
-    'Disease': 'No disease',
-    'Cause': None,
-    'Prevention': None
+    "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
 },
 
 'Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot': {
@@ -80,8 +80,9 @@ disease_dic = {
     },
     'Corn_(maize)___healthy': {
         "Crop": "Corn(maize)",
-        "Disease": "No disease",
-        "Note": "Don't worry. Your crop is healthy. Keep it up !!!"
+        "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
     },
     
 
@@ -101,16 +102,16 @@ disease_dic = {
 
 'Grape___healthy': {
 "Crop": "Grape",
-"Disease": "No disease",
-"Cause": "Don't worry. Your crop is healthy. Keep it up !!!",
-"Prevention": ""
+"Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
 },
 
 'Corn_(maize)___healthy': {
 "Crop": "Corn(maize)",
-"Disease": "No disease",
-"Cause": "Don't worry. Your crop is healthy. Keep it up !!!",
-"Prevention": ""
+"Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
 },
 
 
@@ -142,45 +143,45 @@ disease_dic = {
     },
     'Peach___healthy': {
         "Crop": "Peach",
-        "Disease": "No disease",
-        "Cause": "Don't worry. Your crop is healthy. Keep it up !!!",
-        "Prevention": ""
+        "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
     },
     'Pepper,_bell___healthy': {
         "Crop": "Pepper",
-        "Disease": "No disease",
-        "Cause": "Don't worry. Your crop is healthy. Keep it up !!!",
-        "Prevention": ""
+       "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
     },
     'Potato___healthy': {
         "Crop": "Potato",
-        "Disease": "No disease",
-        "Cause": "Don't worry. Your crop is healthy. Keep it up !!!",
-        "Prevention": ""
+        "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
     },
     'Raspberry___healthy': {
         "Crop": "Raspberry",
-        "Disease": "No disease",
-        "Cause": "Don't worry. Your crop is healthy. Keep it up !!!",
-        "Prevention": ""
+       "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
     },
     'Soybean___healthy': {
         "Crop": "Soybean",
-        "Disease": "No disease",
-        "Cause": "Don't worry. Your crop is healthy. Keep it up !!!",
-        "Prevention": ""
+        "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
     },
     'Strawberry___healthy': {
         "Crop": "Strawberry",
-        "Disease": "No disease",
-        "Cause": "Don't worry. Your crop is healthy. Keep it up !!!",
-        "Prevention": ""
+       "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"
     },
 
     'Tomato___healthy':{ "Crop":"Tomato",
-    "Disease":"No disease",
-    "Cause":"Don't worry. Your crop is healthy. Keep it up !!!",
-    "Prevention":""},
+   "Disease": "No disease !! Don't worry. Your crop is healthy. Keep it up !!!",
+    'Cause': "None",
+    'Prevention': "None"},
 
 
       'Potato___Early_blight': {

@@ -1,4 +1,6 @@
 import "../style/Glass.css";
+import "../style/File.css";
+
 import { useState } from "react";
 import axios from "axios";
 
@@ -19,34 +21,40 @@ function PestiForm() {
   };
 
   return (
-    <div className="body-crop">
-      <div className="glass">
+    <div style={{ backgroundColor: "#70a062" }}>
+      <div className="containers">
         {/* <form onSubmit={(e) => handleSubmit(e)} className="glass__form"> */}
-        <div className="glass__form">
-          <h4>Pesticide detection</h4>
+        <div className="">
+          <h4>Pest detection</h4>
           <div>
             <form onSubmit={handleSubmit}>
-              <label>
-                Upload an image:
+              <label className="btn btn-primary">
+                Upload an image
                 <input
                   type="file"
                   accept=".jpg, .jpeg, .png"
                   onChange={(event) => setFile(event.target.files[0])}
+                  className="btn btn-primary file"
                 />
               </label>
               <br></br>
-              <button type="submit" className="btn btn-primary">
-                Predict
-              </button>
+              {file && (
+                <button className="glass__form__btn_third " type="submit">
+                  Predict
+                </button>
+              )}
             </form>
-            {pestIdentified && (
-              <p>
-                The identified pest is <b>{pestIdentified}</b>
-              </p>
-            )}
           </div>
         </div>
         {/* </form> */}
+      </div>
+      <div className="containers1">
+        {pestIdentified && (
+          <div className="pest brownBg">
+            The identified pest is &nbsp;
+            <b>{pestIdentified}</b>
+          </div>
+        )}
       </div>
     </div>
   );

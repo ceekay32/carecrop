@@ -100,7 +100,7 @@ export default function TopNavbar() {
                 smooth={true}
                 offset={-80}
               >
-                Pesticide
+                Pest
               </NavLink>
             </li>
             <li className="semiBold font15 pointer">

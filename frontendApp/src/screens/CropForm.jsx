@@ -1,5 +1,5 @@
 import "../style/Glass.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import CropHistory from "../components/Sections/CropHistory";
 import { CropContext } from "../context/CropContext";
@@ -15,9 +15,37 @@ function CropForm() {
   const [message, setMessage] = useState();
   const [success, setSuccess] = useState(false);
   const [history, setHistory] = useState([]);
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
+
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+  };
+
+  const handleCountryChange = (event) => {
+    setCountry(event.target.value);
+  };
+
+  useEffect(() => {
+    const apiKey = process.env.REACT_APP_API_KEY;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    if (city) {
+      axios
+        .get(url)
+        .then((res) => {
+          setTemp(res.data.main.temp);
+          setHumidity(res.data.main.humidity);
+          setMessage("");
+        })
+        .catch((error) => setMessage(`Error: ${error.message}`));
+    }
+  }, [city]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // setFormSubmitted(true);
     const params = {
       nitrogen,
       phosphorus,
@@ -27,6 +55,7 @@ function CropForm() {
       rainfall,
       humidity,
     };
+
     axios
       .post("http://localhost:8080/predict_crop", params)
       .then((res) => {
@@ -64,18 +93,22 @@ function CropForm() {
     setTemp("");
     setRainfall("");
     setHumidity("");
+    setCity("");
   };
   return (
-    <div>
+    <div style={{ backgroundColor: "#70a062" }}>
       <div className="body-crop">
         <div className="glass">
           <form onSubmit={(e) => handleSubmit(e)} className="glass__form">
-            <h4>Crop Prediction</h4>
+            <h4>Crop Recommendation</h4>
+            <br />
+            <br />
+            Enter Nitrogen value
             <div className="glass__form__group">
               <input
                 id="nitrogen"
                 className="glass__form__input"
-                placeholder="Enter Nitrogen value"
+                placeholder=""
                 required
                 autoFocus
                 min="0"
@@ -86,12 +119,12 @@ function CropForm() {
                 onChange={(e) => setNitrogen(e.target.value)}
               />
             </div>
-
             <div className="glass__form__group">
+              Enter phosphorus value
               <input
                 id="bsc"
                 className="glass__form__input"
-                placeholder="Enter phosphorus value"
+                placeholder=""
                 required
                 min="0"
                 type="number"
@@ -101,12 +134,12 @@ function CropForm() {
                 onChange={(e) => setPhosphorus(e.target.value)}
               />
             </div>
-
             <div className="glass__form__group">
+              Enter Potassium value
               <input
                 id="workex"
                 className="glass__form__input"
-                placeholder="Enter Potassium value"
+                placeholder=""
                 required
                 min="0"
                 type="number"
@@ -115,12 +148,12 @@ function CropForm() {
                 onChange={(e) => setPotassium(e.target.value)}
               />
             </div>
-
             <div className="glass__form__group">
+              Enter ph value
               <input
                 id="etest_p"
                 className="glass__form__input"
-                placeholder="Enter ph value"
+                placeholder=""
                 required
                 min="0"
                 max="14"
@@ -132,8 +165,7 @@ function CropForm() {
                 onChange={(e) => setPh(e.target.value)}
               />
             </div>
-
-            <div className="glass__form__group">
+            {/* <div className="glass__form__group">
               <input
                 id="msc"
                 className="glass__form__input"
@@ -143,16 +175,17 @@ function CropForm() {
                 type="number"
                 title="Temperature in Celsius"
                 pattern="[0-9]+([\.,][0-9]+)?"
-                step="0.01"
+                step="1"
                 value={temp}
                 onChange={(e) => setTemp(e.target.value)}
               />
-            </div>
+            </div> */}
             <div className="glass__form__group">
+              Enter rainfall in cm
               <input
                 id="msc"
                 className="glass__form__input"
-                placeholder="Enter rainfall in cm"
+                placeholder=""
                 required
                 min="0"
                 type="number"
@@ -162,7 +195,7 @@ function CropForm() {
                 onChange={(e) => setRainfall(e.target.value)}
               />
             </div>
-            <div className="glass__form__group">
+            {/* <div className="glass__form__group">
               <input
                 id="msc"
                 className="glass__form__input"
@@ -174,8 +207,34 @@ function CropForm() {
                 value={humidity}
                 onChange={(e) => setHumidity(e.target.value)}
               />
+            </div> */}
+            {/* <div className="glass__form__group">
+              <input
+                id="msc"
+                className="glass__form__input"
+                placeholder="Enter Country"
+                required
+                type="text"
+                title="Enter Country"
+                value={country}
+                // onChange={(e) => setCountry(e.target.value)}
+                onChange={handleCountryChange}
+              />
+            </div> */}
+            <div className="glass__form__group">
+              Enter city
+              <input
+                id="msc"
+                className="glass__form__input"
+                placeholder=""
+                required
+                type="text"
+                title="Enter city"
+                value={city}
+                // onChange={(e) => setCity(e.target.value)}
+                onChange={handleCityChange}
+              />
             </div>
-
             <div className="glass__form__group">
               <button type="submit" className="glass__form__btn">
                 Submit
@@ -196,22 +255,24 @@ function CropForm() {
           )}
         </div>
       </div>
-      <div className="history card">
+      <div className="history card" style={{ backgroundColor: "#70a062" }}>
         {history.length > 0 && (
           <div className="container">
             <h4>History</h4>
-            {history.map((item, index) => (
-              <p key={index}>
-                <strong>Nitrogen:</strong> {item.nitrogen} <br />
-                <strong>Phosphorus:</strong> {item.phosphorus} <br />
-                <strong>Potassium:</strong> {item.potassium} <br />
-                <strong>PH value:</strong> {item.ph} <br />
-                <strong>Temperature:</strong> {item.temp} <br />
-                <strong>Rainfall:</strong> {item.rainfall} <br />
-                <strong>Humidtiy:</strong> {item.humidity} <br />
-                <strong>Suggested crop:</strong> {item.crop}
-                <br />
-              </p>
+            {history.reverse().map((item, index) => (
+              <div key={index} className="card">
+                <p>
+                  <strong>Nitrogen:</strong> {item.nitrogen} <br />
+                  <strong>Phosphorus:</strong> {item.phosphorus} <br />
+                  <strong>Potassium:</strong> {item.potassium} <br />
+                  <strong>PH value:</strong> {item.ph} <br />
+                  <strong>Temperature:</strong> {item.temp} <br />
+                  <strong>Rainfall:</strong> {item.rainfall} <br />
+                  <strong>Humidity:</strong> {item.humidity} <br />
+                  <strong>Suggested crop:</strong> {item.crop}
+                  <br />
+                </p>
+              </div>
             ))}
           </div>
         )}

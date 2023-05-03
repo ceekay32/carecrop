@@ -6,6 +6,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from sklearn.preprocessing import LabelEncoder
 from fastapi import FastAPI, File, UploadFile
+from fastapi.responses import JSONResponse
 from PIL import Image
 from keras.preprocessing import image
 from keras.models import load_model
@@ -15,6 +16,7 @@ import torch
 from torchvision import transforms
 from model_details import ResNet9
 from disease_details import disease_dic
+from fertilizer_dic import fertilizer_dic
 
 
 # Initializing the FastAPI server
@@ -39,7 +41,8 @@ app.add_middleware(
 
 # Loading up the trained model
 crop_model = pickle.load(open('./models/CR(RandomForest).pkl', 'rb'))
-fert_model = pickle.load(open('./models/FS(RandomForest).pkl', 'rb'))
+fert_model = pickle.load(open('./models/FS(RandomForest)8.pkl', 'rb'))
+# fert_model = pickle.load(open('./models/classifier1.pkl', 'rb'))
 
 
 
@@ -104,8 +107,10 @@ async def get_predict_crop(data: CropRecommendation):
         }
     }
 
+# -------------------------FERTILIZER PREDICTION -----------------------------------------------
+
 @app.post("/predict_fert/")
-async def get_predict_fert(data: FertRecommendation):
+async def get_predict_fertilizer(data: FertRecommendation):
     sample2 = [[
         data.temp,
         data.humidity,
@@ -116,27 +121,58 @@ async def get_predict_fert(data: FertRecommendation):
         data.potassium,
         data.phosphorus
     ]]
-     # Transform the categorical variables 'soil' and 'crop' in the input data
-    data_dict = data.dict()
-    data_dict['soil'] = soil_encoder.transform([data_dict['soil']])[0]
-    data_dict['crop'] = crop_encoder.transform([data_dict['crop']])[0]
 
-    sample2 = [list(data_dict.values())]
-    fert = fert_model.predict(sample2).tolist()[0]
-    # Mapping the integer output to actual fert name
-    fert_names=['28-28', 'Urea', '17-17-17', 'DAP', '14-35-14', '10-26-26', '20-20']
-    # predicted_fert = fert_names[fert] if isinstance(fert, int) and fert < len(fert_names) else "unknown"
-    return {
+    fertilizer = fert_model.predict(sample2)[0]
+
+    fertilizer_names = ['Urea', 'DAP', 'Potassium_Sulfate', '14-35-14', '28-28', '10-26-26', '17-17-17']
+
+    output = {
         "data": {
-            "predicted_fert": fert_names[fert],
-            "fert_type": fert,
+            "fertilizer": fertilizer_names[fertilizer],
+            "fertilizer_type": str(fertilizer),
         }
     }
 
+    return output
+
+
+# @app.post('/predict_fert/')
+# async def fert_recommend(cropname: str, nitrogen: int, phosphorous: int, potassium: int):
+
+#     df = pd.read_csv('./dataset/fertilizer.csv')
+
+#     nr = df[df['Crop'] == cropname]['N'].iloc[0]
+#     pr = df[df['Crop'] == cropname]['P'].iloc[0]
+#     kr = df[df['Crop'] == cropname]['K'].iloc[0]
+
+#     n = nr - nitrogen
+#     p = pr - phosphorous
+#     k = kr - potassium
+#     temp = {abs(n): "N", abs(p): "P", abs(k): "K"}
+#     max_value = temp[max(temp.keys())]
+#     if max_value == "N":
+#         if n < 0:
+#             key = 'NHigh'
+#         else:
+#             key = "Nlow"
+#     elif max_value == "P":
+#         if p < 0:
+#             key = 'PHigh'
+#         else:
+#             key = "Plow"
+#     else:
+#         if k < 0:
+#             key = 'KHigh'
+#         else:
+#             key = "Klow"
+
+#     response = str(fertilizer_dic[key])
+
+#     # return JSONResponse(content={"recommendation": response, "title": title})
+#     return response
+# -------------------------PEST DETECTION -----------------------------------------------
+
 classifier = load_model('./models/Trained_model.h5')
-
-# -------------------------PESTICIDE PREDICTION -----------------------------------------------
-
 
 @app.post("/predict_pesticide/")
 async def predict(image_file: UploadFile = File(...)):

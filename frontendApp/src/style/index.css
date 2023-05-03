@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 html,
 body,
 div,
@@ -133,7 +135,8 @@ input:-webkit-autofill {
 body {
   background: #fff;
   color: #0b093b;
-  font-family: "Khula", sans-serif;
+  /* font-family: "Khula", sans-serif; */
+  font-family: "Montserrat", sans-serif;
   overflow-x: hidden;
   font-size: 16px;
   font-weight: 400;
@@ -165,6 +168,21 @@ body {
 }
 .animate {
   transition: 0.3s ease;
+}
+.animate1 {
+  /* box-shadow: 2px 2px 2px 2px grey; */
+
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+}
+.animate1:hover {
+  box-shadow: 2px 2px 2px 5px rgba(0, 0, 0, 0.2);
+  text-decoration: none !important;
+  color: #0b093b !important;
 }
 .pointer {
   cursor: pointer;
@@ -357,6 +375,10 @@ body {
   background-color: #70a062;
   /* background-color: #49cb86; */
 }
+
+.blueBg {
+  background-color: #0b093b;
+}
 .btn {
   border: none;
   color: white;
@@ -367,6 +389,19 @@ body {
   font-size: 16px;
   margin: 10px;
   border-radius: 8px;
+  cursor: pointer;
+}
+.btn1 {
+  border: none;
+  color: #0b0f37;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 .btn-primary {
   background-color: #f44336;
