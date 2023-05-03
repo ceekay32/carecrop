@@ -105,10 +105,20 @@ export default function Services() {
                 </h2>
 
                 <p className="font12">
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                  justo duo dolores et ea rebum.
+                  The primary goal of I-Krishi is to revolutionize the
+                  agricultural industry by leveraging data science and machine
+                  learning techniques. We aim to help farmers increase their
+                  crop yields and profitability by providing them with accurate
+                  and timely information about plant diseases, pests, and
+                  suitable crops for their land. Our advanced technology enables
+                  us to predict diseases and pests accurately, allowing farmers
+                  to take proactive measures to prevent or control them. We also
+                  provide farmers with real-time information temperature,
+                  humidity, and other factors that affect crop growth, enabling
+                  them to make informed decisions about fertilizer application .
+                  Overall, our objective is to make farming more profitable,
+                  sustainable, and accessible by providing farmers with the
+                  tools and knowledge they need to succeed.
                 </p>
                 {/* <ButtonsRow
                   className="flexNullCenter"

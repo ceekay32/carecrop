@@ -85,7 +85,7 @@ function FertForm() {
       .then((res) => {
         const data = res.data.data;
         const parameters = JSON.stringify(params);
-        const mesg = `Our model suggests that you use ${data.fertilizer} as your <fertilizer></fertilizer>`;
+        const mesg = `Our model suggests that you use ${data.fertilizer} as your fertilizer`;
         const fert = data.fertilizer;
         setMessage(mesg);
         setSuccess(true);
